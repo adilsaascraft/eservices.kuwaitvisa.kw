@@ -1,21 +1,22 @@
 'use client'
 
 import { useParams } from 'next/navigation'
-import { VALID_PASSPORT, visaData } from '@/lib/mock-data'
+import { visaDataMap } from '@/lib/mock-data'
 import { VerifyResult } from '@/components/verify-result'
 
 export default function VerifyPage() {
   const params = useParams()
-  const passport = params?.passport as string | undefined
+  const passportParam = params?.passport as string | undefined
 
-  const entered = passport?.trim().toUpperCase()
-  const valid = VALID_PASSPORT.trim().toUpperCase()
+  const normalizedPassport = passportParam?.trim().toUpperCase()
 
-  const isValid = entered === valid
+  const visaData = normalizedPassport
+    ? visaDataMap[normalizedPassport]
+    : undefined
 
   return (
     <div className="mx-auto max-w-md px-4 py-10">
-      {isValid ? (
+      {visaData ? (
         <VerifyResult data={visaData} />
       ) : (
         <p className="text-center text-lg font-medium text-red-600">
