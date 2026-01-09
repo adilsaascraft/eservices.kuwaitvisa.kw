@@ -1,66 +1,132 @@
+export type LocalizedText = {
+  en: string
+  ar: string
+}
+
 export type VisaData = {
-  certificateType: string
-  visaStatus: string
-  visaType: string
+  certificateType: LocalizedText
+  visaStatus: LocalizedText
+  visaType: LocalizedText
   visaNumber: string
-  nationality: string
+  nationality: LocalizedText
   passportNumber: string
   arabicName: string
   latinName: string
-  companyName: string
+  companyName: LocalizedText
   expiryDate: string
 }
 
 export const visaDataMap: Record<string, VisaData> = {
   V7553311: {
-    certificateType: 'Private Sector Work Visa',
-    visaStatus: 'APPROVED',
-    visaType: 'ELECTRONIC VISA',
+    certificateType: {
+      en: 'Private Sector Work Visa',
+      ar: 'تأشيرة عمل للقطاع الخاص',
+    },
+    visaStatus: {
+      en: 'APPROVED',
+      ar: 'معتمدة',
+    },
+    visaType: {
+      en: 'ELECTRONIC VISA',
+      ar: 'تأشيرة إلكترونية',
+    },
     visaNumber: '251252121',
-    nationality: 'India',
+    nationality: {
+      en: 'India',
+      ar: 'الهند',
+    },
     passportNumber: 'V7553311',
-    arabicName: 'Abdul-Alam',
+    arabicName: 'عبدالعالم',
     latinName: 'ABDUL ALEEM',
-    companyName: 'Mulla Group',
+    companyName: {
+      en: 'Mulla Group',
+      ar: 'مجموعة الملا',
+    },
     expiryDate: '2026-03-30',
   },
 
   V7553312: {
-    certificateType: 'Private Sector Work Visa',
-    visaStatus: 'APPROVED',
-    visaType: 'ELECTRONIC VISA',
+    certificateType: {
+      en: 'Private Sector Work Visa',
+      ar: 'تأشيرة عمل للقطاع الخاص',
+    },
+    visaStatus: {
+      en: 'APPROVED',
+      ar: 'معتمدة',
+    },
+    visaType: {
+      en: 'ELECTRONIC VISA',
+      ar: 'تأشيرة إلكترونية',
+    },
     visaNumber: '251252122',
-    nationality: 'India',
+    nationality: {
+      en: 'India',
+      ar: 'الهند',
+    },
     passportNumber: 'V7553312',
-    arabicName: 'Abdul-Malik',
+    arabicName: 'عبدالملك',
     latinName: 'ABDUL MALIK',
-    companyName: 'Mulla Group',
+    companyName: {
+      en: 'Mulla Group',
+      ar: 'مجموعة الملا',
+    },
     expiryDate: '2026-04-15',
   },
 
   V7553313: {
-    certificateType: 'Private Sector Work Visa',
-    visaStatus: 'APPROVED',
-    visaType: 'ELECTRONIC VISA',
+    certificateType: {
+      en: 'Private Sector Work Visa',
+      ar: 'تأشيرة عمل للقطاع الخاص',
+    },
+    visaStatus: {
+      en: 'APPROVED',
+      ar: 'معتمدة',
+    },
+    visaType: {
+      en: 'ELECTRONIC VISA',
+      ar: 'تأشيرة إلكترونية',
+    },
     visaNumber: '251252123',
-    nationality: 'India',
+    nationality: {
+      en: 'India',
+      ar: 'الهند',
+    },
     passportNumber: 'V7553313',
-    arabicName: 'Abdul-Fattah',
+    arabicName: 'عبدالفتاح',
     latinName: 'ABDUL FATTAH',
-    companyName: 'Mulla Group',
+    companyName: {
+      en: 'Mulla Group',
+      ar: 'مجموعة الملا',
+    },
     expiryDate: '2026-05-10',
   },
 
   V7553314: {
-    certificateType: 'Private Sector Work Visa',
-    visaStatus: 'APPROVED',
-    visaType: 'TEACHING VISA',
+    certificateType: {
+      en: 'Private Sector Work Visa',
+      ar: 'تأشيرة عمل للقطاع الخاص',
+    },
+    visaStatus: {
+      en: 'APPROVED',
+      ar: 'معتمدة',
+    },
+    visaType: {
+      en: 'TEACHING VISA',
+      ar: 'تأشيرة تعليم',
+    },
     visaNumber: '251252124',
-    nationality: 'India',
+    nationality: {
+      en: 'India',
+      ar: 'الهند',
+    },
     passportNumber: 'V7553314',
-    arabicName: 'Abdul-Mohaimin',
+    arabicName: 'عبدالمهيمن',
     latinName: 'ABDUL MOHAIMIN',
-    companyName: 'Mulla Group',
+    companyName: {
+      en: 'Mulla Group',
+      ar: 'مجموعة الملا',
+    },
     expiryDate: '2026-06-20',
   },
 }
+

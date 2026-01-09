@@ -1,18 +1,38 @@
 import { CheckCircle2 } from 'lucide-react'
 
+type LocalizedText = {
+  en: string
+  ar: string
+}
+
 function Field({
-  label,
+  labelEn,
+  labelAr,
   value,
-  rtl = false,
 }: {
-  label: string
-  value: string
-  rtl?: boolean
+  labelEn: string
+  labelAr?: string
+  value: string | LocalizedText
 }) {
+  const isLocalized = typeof value === 'object' && value !== null
+
   return (
-    <div className={`rounded-lg border p-4 ${rtl ? 'rtl' : 'ltr'}`}>
-      <p className="font-semibold">{label}</p>
-      <p className="text-gray-600">{value}</p>
+    <div className="rounded-lg border p-4 text-center">
+      {/* Arabic label (optional) */}
+      {labelAr && <p className="font-semibold text-gray-900">{labelAr}</p>}
+
+      {/* English label */}
+      <p className="font-semibold text-gray-900">{labelEn}</p>
+
+      {/* Value */}
+      {isLocalized ? (
+        <>
+          <p className="mt-1 text-gray-600">{(value as LocalizedText).ar}</p>
+          <p className="text-gray-600">{(value as LocalizedText).en}</p>
+        </>
+      ) : (
+        <p className="mt-1 text-gray-600">{value}</p>
+      )}
     </div>
   )
 }
@@ -23,26 +43,54 @@ export function VerifyResult({ data }: { data: any }) {
       {/* Status */}
       <div className="text-center">
         <CheckCircle2 className="mx-auto h-16 w-16 text-green-500" />
-        <p className="mt-2 text-green-600 rtl">وثيقة صالحة</p>
-        <p className="font-medium text-green-600 ltr">Valid document</p>
+        <p className="mt-2 font-medium text-green-600">وثيقة صالحة</p>
+        <p className="text-green-600">Valid document</p>
       </div>
 
       {/* Fields */}
-      <Field label="Certificate Type" value={data.certificateType} />
-      <Field label="Visa Status" value={data.visaStatus} />
-      <Field label="Visa Type" value={data.visaType} />
-      <Field label="Visa Number" value={data.visaNumber} />
-      <Field label="Nationality" value={data.nationality} />
-      <Field label="Passport Number" value={data.passportNumber} />
+      <Field
+        labelEn="Certificate Type"
+        labelAr="نوع الشهادة"
+        value={data.certificateType}
+      />
 
-      {/* Arabic RTL field */}
-      <Field label="الاسم العربي" value={data.arabicName} rtl />
+      <Field
+        labelEn="Visa Status"
+        labelAr="حالة التأشيرة"
+        value={data.visaStatus}
+      />
 
-      {/* English LTR field */}
-      <Field label="Latin Name" value={data.latinName} />
+      <Field labelEn="Visa Type" labelAr="نوع التأشيرة" value={data.visaType} />
 
-      <Field label="Company Name" value={data.companyName} />
-      <Field label="Expiry Date" value={data.expiryDate} />
+      <Field labelEn="Visa Number" value={data.visaNumber} />
+
+      <Field labelEn="Nationality" labelAr="الجنسية" value={data.nationality} />
+
+      <Field
+        labelEn="Passport Number"
+        labelAr="رقم الجواز"
+        value={data.passportNumber}
+      />
+
+      <Field
+        labelEn="Arabic Name"
+        labelAr="الاسم العربي"
+        value={data.arabicName}
+      />
+
+      <Field labelEn="Latin Name" value={data.latinName} />
+
+      <Field
+        labelEn="Company Name"
+        labelAr="اسم الشركة"
+        value={data.companyName}
+      />
+
+      <Field
+        labelEn="Expiry Date"
+        labelAr="تاريخ الانتهاء"
+        value={data.expiryDate}
+      />
     </div>
   )
 }
