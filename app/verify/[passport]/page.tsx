@@ -1,25 +1,23 @@
 'use client'
 
-import { useParams } from 'next/navigation'
-import { useEffect, useState } from 'react'
+import { usePathname } from 'next/navigation'
+import { useMemo } from 'react'
 import { visaDataMap } from '@/lib/mock-data'
 import { VerifyResult } from '@/components/verify-result'
 
 export default function VerifyPage() {
-  const params = useParams()
-  const [visaData, setVisaData] = useState<any>(null)
+  const pathname = usePathname()
 
-  useEffect(() => {
-    const passport = (params?.passport as string | undefined)
-      ?.trim()
-      ?.toUpperCase()
+  const visaData = useMemo(() => {
+    if (!pathname) return null
 
-    if (passport && visaDataMap[passport]) {
-      setVisaData(visaDataMap[passport])
-    } else {
-      setVisaData(null)
-    }
-  }, [params?.passport])
+    // pathname example: /verify/V7553311
+    const passport = pathname.split('/').pop()?.trim()?.toUpperCase()
+
+    if (!passport) return null
+
+    return visaDataMap[passport] ?? null
+  }, [pathname])
 
   return (
     <div className="mx-auto max-w-md px-4 py-10">
