@@ -1,18 +1,25 @@
 'use client'
 
 import { useParams } from 'next/navigation'
+import { useEffect, useState } from 'react'
 import { visaDataMap } from '@/lib/mock-data'
 import { VerifyResult } from '@/components/verify-result'
 
 export default function VerifyPage() {
   const params = useParams()
-  const passportParam = params?.passport as string | undefined
+  const [visaData, setVisaData] = useState<any>(null)
 
-  const normalizedPassport = passportParam?.trim().toUpperCase()
+  useEffect(() => {
+    const passport = (params?.passport as string | undefined)
+      ?.trim()
+      ?.toUpperCase()
 
-  const visaData = normalizedPassport
-    ? visaDataMap[normalizedPassport]
-    : undefined
+    if (passport && visaDataMap[passport]) {
+      setVisaData(visaDataMap[passport])
+    } else {
+      setVisaData(null)
+    }
+  }, [params?.passport])
 
   return (
     <div className="mx-auto max-w-md px-4 py-10">
